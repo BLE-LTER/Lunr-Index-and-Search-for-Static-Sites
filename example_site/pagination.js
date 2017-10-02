@@ -70,7 +70,17 @@ function showPageLinks(total, limit, showPages, currentStart, domElementId) {
 }
 
 
-function showResultCount(total, limitPerPage, currentStartIndex, domElementId) {
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
+
+
+function showResultCount(query, total, limitPerPage, currentStartIndex, domElementId) {
     if (total == 0) {
         return;
     }
@@ -79,8 +89,16 @@ function showResultCount(total, limitPerPage, currentStartIndex, domElementId) {
     if (total > 1) {
         s = "s";
     }
+    var found = "<p>Found " + total + " result" + s;
+    if (query != "" && query != null) {
+        query = escapeHtml(query);
+        var forQuery = ' for <span class="result-query">' + query + '</span>';
+    }
+    else {
+        var forQuery = "";
+    }
     if (total <= limitPerPage) {
-        var html = "<p>Found " + total + " result" + s + "</p>";
+        var showing = "</p>";
     }
     else {
         var fromCount = currentStartIndex + 1;
@@ -88,9 +106,8 @@ function showResultCount(total, limitPerPage, currentStartIndex, domElementId) {
         if (toCount > total) {
             toCount = total;
         }
-        var html = ("<p>Showing results " + fromCount + " to " + toCount + 
-                    " out of " + total + "</p>");
+        var showing = (". Showing results " + fromCount + " to " + toCount + ".</p>");
     }
     var element = document.getElementById(domElementId);
-    element.innerHTML = html;
+    element.innerHTML = found + forQuery + showing;
 }

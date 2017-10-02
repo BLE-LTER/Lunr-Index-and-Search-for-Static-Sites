@@ -65,7 +65,8 @@ function searchLunr(query, start=0) {
     var showPages = parseInt(LUNR_CONFIG["showPages"]);
     var pageElementId = LUNR_CONFIG["pagesElementId"];
     showPageLinks(count, limit, showPages, currentStart, pageElementId);
-    showResultCount(count, limit, currentStart, LUNR_CONFIG["countElementId"]);
+    var query = getParameterByName("q");
+    showResultCount(query, count, limit, currentStart, LUNR_CONFIG["countElementId"]);
 }
 
 

@@ -33,6 +33,10 @@
     color: #808080;
 }
 
+.result-query {
+    font-weight: bold;
+}
+
 .pagination {
 	text-align: center;
 	margin: 16px 8px 16px 8px;
