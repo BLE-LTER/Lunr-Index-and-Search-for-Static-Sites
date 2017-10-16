@@ -2,6 +2,8 @@
 
 This project demonstrates how to build and use a [Lunr](https://lunrjs.com/) search index for a static website.
 
+[See a live demo at RawGit](https://cdn.rawgit.com/twhiteaker/Lunr-Index-and-Search-for-Static-Sites/fa1fdebf/example_site/search.html)
+
 ## Prerequisites
 
 1. Install Node.js (https://nodejs.org/en/download/).
