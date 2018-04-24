@@ -1,0 +1,3 @@
+node_modules/
+package-lock.json
+lunr_index.js
