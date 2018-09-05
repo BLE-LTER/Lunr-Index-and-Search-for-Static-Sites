@@ -3,9 +3,7 @@
 var LUNR_CONFIG = {
     "limit": 10,  // Max number of results to retrieve per page
     "resultsElementId": "searchResults",  // Element to contain results
-    "countElementId": "resultCount",  // Element showing number of results
-    "pagesElementId": "pagination",  // Element to display result page links
-    "showPages": 5  // MUST BE ODD NUMBER! Max number of page links to show
+    "countElementId": "resultCount"  // Element showing number of results
 };
 
 
@@ -44,7 +42,39 @@ function parseLunrResults(results) {
 }
 
 
-function searchLunr(query, start) {
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
+
+
+function showResultCount(query, total, domElementId) {
+    if (total == 0) {
+        return;
+    }
+
+    var s = "";
+    if (total > 1) {
+        s = "s";
+    }
+    var found = "<p>Found " + total + " result" + s;
+    if (query != "" && query != null) {
+        query = escapeHtml(query);
+        var forQuery = ' for <span class="result-query">' + query + '</span>';
+    }
+    else {
+        var forQuery = "";
+    }
+    var element = document.getElementById(domElementId);
+    element.innerHTML = found + forQuery + "</p>";
+}
+
+
+function searchLunr(query) {
     var idx = lunr.Index.load(LUNR_DATA);
     // Write results to page
     var results = idx.search(query);
@@ -52,33 +82,16 @@ function searchLunr(query, start) {
     var elementId = LUNR_CONFIG["resultsElementId"];
     document.getElementById(elementId).innerHTML = resultHtml;
 
-    // Add links to additional search result pages if necessary
-    var currentStart = getParameterByName("start");
-    if (!currentStart) {
-        currentStart = 0;
-    }
-    else {
-        currentStart = parseInt(currentStart);
-    }
     var count = results.length;
-    var limit = parseInt(LUNR_CONFIG["limit"]);
-    var showPages = parseInt(LUNR_CONFIG["showPages"]);
-    var pageElementId = LUNR_CONFIG["pagesElementId"];
-    showPageLinks(count, limit, showPages, currentStart, pageElementId);
-    var query = getParameterByName("q");
-    showResultCount(query, count, limit, currentStart, LUNR_CONFIG["countElementId"]);
+    showResultCount(query, count, LUNR_CONFIG["countElementId"]);
 }
 
 
 // When the window loads, read query parameters and perform search
 window.onload = function() {
     var query = getParameterByName("q");
-    var start = getParameterByName("start");
     if (query != "" && query != null) {
         document.forms.lunrSearchForm.q.value = query;
-        if (!start) {
-            start = 0;
-        }
-        searchLunr(query, start);
+        searchLunr(query);
     }
 };
