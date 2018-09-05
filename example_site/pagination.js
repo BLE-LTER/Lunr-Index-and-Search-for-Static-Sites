@@ -19,7 +19,7 @@ function makePageLink(currentUrl, currentStart, start, linkText) {
     var tagStart = '<a href="';
     if (currentStart == start) {
         uri = "#";
-        if (!linkText.toString().startsWith("&")) {  // Don't modify arrows
+        if (!linkText.toString().substring(0, 1) === "&") {  // Don't modify arrows
             tagStart = '<a class="active" href="';
         }
     }

@@ -44,7 +44,7 @@ function parseLunrResults(results) {
 }
 
 
-function searchLunr(query, start=0) {
+function searchLunr(query, start) {
     var idx = lunr.Index.load(LUNR_DATA);
     // Write results to page
     var results = idx.search(query);
