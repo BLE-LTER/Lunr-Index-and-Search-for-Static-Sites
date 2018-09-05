@@ -2,7 +2,7 @@
 
 This project demonstrates how to build and use a [Lunr](https://lunrjs.com/) search index for a static website.
 
-[See a live demo at RawGit](https://cdn.rawgit.com/twhiteaker/Lunr-Index-and-Search-for-Static-Sites/89aa8c57/example_site/index.html)
+[See a live demo at RawGit](https://cdn.rawgit.com/twhiteaker/Lunr-Index-and-Search-for-Static-Sites/35ed5065/example_site/index.html)
 
 ## Prerequisites
 
