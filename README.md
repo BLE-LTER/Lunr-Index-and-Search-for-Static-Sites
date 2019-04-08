@@ -2,7 +2,7 @@
 
 This project demonstrates how to build and use a [Lunr](https://lunrjs.com/) search index for a static website.
 
-[See a live demo at RawGit](https://cdn.rawgit.com/twhiteaker/Lunr-Index-and-Search-for-Static-Sites/35ed5065/example_site/index.html)
+[Live demo](https://ble-lter.github.io/Lunr-Index-and-Search-for-Static-Sites/example_site/search.html)
 
 ## Prerequisites
 
@@ -29,6 +29,7 @@ Lunr search results just provide the identifier of each matching item. To provid
 ## Using the Index
 
 To see the search index in action:
+
 1. Build a search index named `lunr_index.js` for the example site using the instructions above.
 2. Copy lunr_index.js to the **example_site** folder.
 3. Open search.html in your browser and enter a search term like `cat` or `mango`.
