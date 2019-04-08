@@ -1,7 +1,6 @@
 "use strict";
 
 var LUNR_CONFIG = {
-    "limit": 10,  // Max number of results to retrieve per page
     "resultsElementId": "searchResults",  // Element to contain results
     "countElementId": "resultCount"  // Element showing number of results
 };
